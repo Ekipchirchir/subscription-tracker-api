@@ -42,3 +42,16 @@ export const getUserSubscriptions = async (req, res, next) => {
     next(e);
   }
 }
+
+export const updateSubscription = async (req, res, next) => {
+  try {
+    const subscription = await Subscription.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    res.status(200).json({
+      success: true,
+      data:subscription,
+      message:"Subscription updated successfully"
+    })
+  } catch (e) {
+    next(e);
+  }
+}
